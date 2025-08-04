@@ -4,11 +4,15 @@ on:
   schedule:
     - cron: '0 1,6,11,16 * * *' # Run every day at 1, 6, 11, 16 AM UTC
   workflow_dispatch:
-  
+
 
 jobs:
   claude_code:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      id-token: write
     steps:
       - name: Claude Code Action
         uses: anthropics/claude-code-action@main
