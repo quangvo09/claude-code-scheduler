@@ -17,7 +17,7 @@ jobs:
       - name: Claude Code Action
         uses: anthropics/claude-code-action@main
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           system_prompt: "You are a helpful coding assistant."
           prompt: |
             Continue working on what you were working on previously. If you weren't working on something previously, then come up with a list of tasks to work on based on what is left in the codebase.
