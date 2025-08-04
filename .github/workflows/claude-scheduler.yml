@@ -5,7 +5,6 @@ on:
     - cron: '0 1,6,11,16 * * *' # Run every day at 1, 6, 11, 16 AM UTC
   workflow_dispatch:
 
-
 jobs:
   claude_code:
     runs-on: ubuntu-latest
@@ -18,6 +17,5 @@ jobs:
         uses: anthropics/claude-code-action@beta
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          system_prompt: "You are a helpful coding assistant."
           prompt: |
             Continue working on what you were working on previously. If you weren't working on something previously, then come up with a list of tasks to work on based on what is left in the codebase.
