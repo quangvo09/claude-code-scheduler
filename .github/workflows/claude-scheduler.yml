@@ -13,6 +13,9 @@ jobs:
       pull-requests: read
       id-token: write
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
       - name: Claude Code Action
         uses: anthropics/claude-code-action@beta
         with:
