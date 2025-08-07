@@ -31,6 +31,6 @@ jobs:
             Current date: ${{ steps.date.outputs.date }}
             Please update the README.md file to include the current date (${{ steps.date.outputs.date }}) in the "Last Updated" section
             
-      - uses: quangvo09/claude-code-scheduler@main
+      - uses: quangvo09/publish-to-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
