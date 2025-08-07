@@ -9,12 +9,18 @@ jobs:
   claude_code:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: read
       id-token: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
         
       - name: Claude Code Action
         uses: anthropics/claude-code-action@beta
@@ -22,4 +28,9 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           mode: agent
           prompt: |
-            Continue working on what you were working on previously. If you weren't working on something previously, then come up with a list of tasks to work on based on what is left in the codebase.
+            Current date: ${{ steps.date.outputs.date }}
+            Please update the README.md file to include the current date (${{ steps.date.outputs.date }}) in the "Last Updated" section
+            
+      - uses: quangvo09/claude-code-scheduler@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
